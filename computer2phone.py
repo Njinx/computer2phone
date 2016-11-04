@@ -18,7 +18,7 @@ def push():
     print "2) Send a link."
     print "3) Reconfigure your Pushbullet API key."
     print "4) Remove your API key."
-    ans = float(input("(Default is 1) "))
+    ans = input("(Default is 1) ")
     
     if ans == 1:
         title = raw_input("What would you like the title to be? ")
@@ -42,7 +42,7 @@ def push():
         sys.exit()
         
     elif ans == 4:
-        confirm = raw_input("Are you sure you want to remove your API key? You'll have to rerun the install.sh script or manually re-edit the api-key.txt file. (Y/N) ").lower()
+        confirm = raw_input("Are you sure you want to remove your API key? You'll have to re-run the install.sh script or manually re-edit the api-key.txt file. (Y/N) ").lower()
         
         if confirm == "y":
             f = file("api-key.txt", "w")

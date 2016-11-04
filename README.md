@@ -17,5 +17,5 @@ If you're running something besides Linux you can still use this program. To do 
   2. python-magic
   3. pushbullet.py
   
-Then you'll need to edit the "api-key.txt" file and paste your API key in making sure there aren't any line breaks, tabs, or spaces. 
+Then you'll need to create the "api-key.txt" file and paste your API key in making sure there aren't any line breaks, tabs, or spaces. 
 You then should be able to run the python file.
