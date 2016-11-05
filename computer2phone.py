@@ -57,16 +57,16 @@ def push():
 
 ## Repeat
 def again():
-    
-	again = raw_input("Would you like to send another? (y/n) ").lower()
-	if again == "y":
-		push()
-        
-	elif again == "n":
-		sys.exit()
-        
-	else: 
-		again()
+
+    again = raw_input("Would you like to send another? (y/n) ").lower()
+    if again == "y":
+        push()
+
+    elif again == "n":
+            sys.exit()
+
+    else: 
+            again()
 
 ## Loads in API Key
 f = file("api-key.txt", "r")
