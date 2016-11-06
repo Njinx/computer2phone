@@ -1,5 +1,5 @@
 # Computer2Phone
-This is a simple python program that send custom messages or links to your other devices via the Pushbullet API.
+This is a simple python program that sends custom messages or links to your other devices via the Pushbullet API.
 
 ## Intentions
 This project was made as a simple test to show how useful the Pushbullet API can be.
