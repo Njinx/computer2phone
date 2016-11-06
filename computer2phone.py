@@ -26,9 +26,10 @@ def push():
     print effect.purple + "What would you like to do?" + effect.end
     print effect.cyan + "1) Send text." + effect.end
     print effect.cyan + "2) Send a link." + effect.end
-    print effect.cyan + "3) List all devices" + effect.end
-    print effect.cyan + "4) Reconfigure your Pushbullet API key." + effect.end
-    print effect.cyan + "5) Remove your API key." + effect.end
+    print effect.cyan + "3) Send a file."
+    print effect.cyan + "4) List all devices" + effect.end
+    print effect.cyan + "5) Reconfigure your Pushbullet API key." + effect.end
+    print effect.cyan + "6) Remove your API key." + effect.end
     a = input(effect.purple + "(Default is 1) " + effect.end)
     
     if a == 1:
@@ -44,11 +45,20 @@ def push():
         again()
         
     elif a == 3:
+        fileph = raw_input(effect.red + "Please type file path. " + effect.end)
+        filenm = raw_input(effect.red + "What would you like your file name to be? " + effect.end)
+        
+        with open(path, "rb") as file:
+            data = pb.upload_file(file, name)
+            
+        push = pb.push_file(**data)
+        
+    elif a == 4:
         print effect.green + "All Devices" + effect.end
         print effect.yellow + "=========================================" + effect.end
         print pb.devices 
     
-    elif a == 4:
+    elif a == 5:
         print effect.red + "If you don't know how to find your API key visit this link: http://bit.ly/2e6xn40" + effect.end
         key = raw_input(effect.yellow + "What is your Pushbullet API key? " + effect.end)
         f = file("api-key.txt", "w")
@@ -57,7 +67,7 @@ def push():
         print effect.red + "For changes to take effect the program will close." + effect.end
         sys.exit()
         
-    elif a == 5:
+    elif a == 6:
         confirm = raw_input( effect.red + "Are you sure you want to remove your API key? You'll have to re-run the install.sh script or manually re-edit the api-key.txt file. (Y/N) " + effect.end).lower()
         
         if confirm == "y":
