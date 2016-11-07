@@ -1,6 +1,6 @@
 ## Imports
+import os
 import string
-import subprocess as sp
 import sys
 import magic
 from pushbullet import Pushbullet
@@ -20,7 +20,7 @@ class effect:
 
 ## Start of Program
 def push():
-    tmp = sp.call('clear',shell=True)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print effect.green + "Computer2Phone" + effect.end
     print effect.yellow + "========================================="
     print effect.purple + "What would you like to do?" + effect.end
