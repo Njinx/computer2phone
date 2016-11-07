@@ -30,7 +30,7 @@ def push():
     print effect.cyan + "4) List all devices" + effect.end
     print effect.cyan + "5) Reconfigure your Pushbullet API key." + effect.end
     print effect.cyan + "6) Remove your API key." + effect.end
-    a = input(effect.purple + "(Default is 1) " + effect.end)
+    a = input("Input number: ")
     
     if a == 1:
         title = raw_input(effect.red + "What would you like the title to be? " + effect.end)
