@@ -1,4 +1,5 @@
 ## Imports
+import hashlib
 import os
 import string
 import sys
@@ -22,14 +23,18 @@ class effect:
 def push():
     os.system('cls' if os.name == 'nt' else 'clear')
     print effect.green + "Computer2Phone" + effect.end
-    print effect.yellow + "========================================="
     print effect.purple + "What would you like to do?" + effect.end
+    print effect.yellow + "=========================================" + effect.end
     print effect.cyan + "1) Send text." + effect.end
     print effect.cyan + "2) Send a link." + effect.end
-    print effect.cyan + "3) Send a file."
-    print effect.cyan + "4) List all devices" + effect.end
-    print effect.cyan + "5) Reconfigure your Pushbullet API key." + effect.end
-    print effect.cyan + "6) Remove your API key." + effect.end
+    print effect.cyan + "3) Send a file." + effect.end
+    print effect.yellow + "=========================================" + effect.end
+    print effect.cyan + "4) Send text in binary."
+    print effect.cyan + "5) Send text in MD5."
+    print effect.yellow + "=========================================" + effect.end
+    print effect.cyan + "6) List all devices" + effect.end
+    print effect.cyan + "7) Reconfigure your Pushbullet API key." + effect.end
+    print effect.cyan + "8) Remove your API key." + effect.end
     a = input("Input number: ")
     
     if a == 1:
@@ -54,11 +59,25 @@ def push():
         push = pb.push_file(**data)
         
     elif a == 4:
+        title = raw_input(effect.red + "What would you like the title to be? " + effect.end)
+        data = raw_input(effect.red + "Type the text in ASCII (Normal) Format. " + effect.end)
+        data = ' '.join(format(ord(x), 'b') for x in data)  
+        push = pb.push_note(title, data)
+        
+    elif a == 5:   
+        title = raw_input(effect.red + "What would you like the title to be? " + effect.end)
+        data = raw_input(effect.red + "Type the text in ASCII (Normal) Format. " + effect.end)
+        m =  hashlib.md5()
+        m.update(data)
+        data = m.hexdigest()
+        push = pb.push_note(title, data)
+        
+    elif a == 6:
         print effect.green + "All Devices" + effect.end
         print effect.yellow + "=========================================" + effect.end
         print pb.devices 
     
-    elif a == 5:
+    elif a == 7:
         print effect.red + "If you don't know how to find your API key visit this link: http://bit.ly/2e6xn40" + effect.end
         key = raw_input(effect.yellow + "What is your Pushbullet API key? " + effect.end)
         f = file("api-key.txt", "w")
@@ -67,7 +86,7 @@ def push():
         print effect.red + "For changes to take effect the program will close." + effect.end
         sys.exit()
         
-    elif a == 6:
+    elif a == 8:
         confirm = raw_input( effect.red + "Are you sure you want to remove your API key? You'll have to re-run the install.sh script or manually re-edit the api-key.txt file. (Y/N) " + effect.end).lower()
         
         if confirm == "y":
